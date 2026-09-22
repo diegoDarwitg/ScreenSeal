@@ -1,10 +1,10 @@
-# ScreenSeal 📱🖥️
+# ScreenSeal 
 
 > Convierte tu dispositivo Android en un segundo monitor extendido real para tu computador a través de conexión USB, sin necesidad de hardware adicional (HDMI, DisplayPort o capturadoras).
 
 ---
 
-## 📌 Contexto y Objetivo
+## Contexto y Objetivo
 
 **ScreenSeal** nace con la idea de transformar un teléfono o tablet Android en una **segunda pantalla extendida real** del computador mediante cable USB y software.
 
@@ -15,14 +15,14 @@ A diferencia de soluciones convencionales que únicamente duplican o transmiten 
 
 ---
 
-## 👥 Integrantes
+## Integrantes
 
 - **Diego Darwitg**
 - **Iván Carreño**
 
 ---
 
-## 🏗️ Arquitectura del Proyecto
+## Arquitectura del Proyecto
 
 El proyecto está modularizado en tres componentes principales:
 
@@ -39,7 +39,7 @@ ScreenSeal/
 
 ```mermaid
 flowchart LR
-    subgraph PC["🖥️ Computador (screenseal-host)"]
+    subgraph PC["Computador (screenseal-host)"]
         direction TB
         Host["Host Server (Rust)"]
         VMon["Monitor Virtual<br/>(VKMS / EVDI / IddCx)"]
@@ -47,12 +47,12 @@ flowchart LR
         VMon --> Encoder --> Host
     end
 
-    subgraph Comm["🔌 Comunicación USB"]
+    subgraph Comm[" Comunicación USB"]
         direction TB
         ADB["ADB Reverse Tunnel<br/>(tcp:7878 -> tcp:7878)"]
     end
 
-    subgraph Device["📱 Dispositivo Android (ScreenSeal Client)"]
+    subgraph Device[" Dispositivo Android (ScreenSeal Client)"]
         direction TB
         Client["Cliente Android (Kotlin)"]
         Decoder["Video Decoder & Fullscreen View"]
@@ -60,7 +60,7 @@ flowchart LR
     end
 
     Host <-->|TCP Socket| ADB <-->|TCP Socket| Client
-    Core["📦 screenseal-core<br/>(Protocolo, Serde, Bincode, Framing)"] -.-> Host
+    Core[" screenseal-core<br/>(Protocolo, Serde, Bincode, Framing)"] -.-> Host
     Core -.-> Client
 ```
 
@@ -88,7 +88,7 @@ Aplicación para Android (dispositivos físicos / tablets):
 
 ---
 
-## 🔌 Comunicación y Transporte
+##  Comunicación y Transporte
 
 La comunicación física se realiza a través de cable USB mediante **ADB Reverse**:
 
@@ -121,7 +121,7 @@ HOST (PC)                                   CLIENTE (Android)
 
 ---
 
-## 🗺️ Plan de Desarrollo y Estado del Proyecto
+## Plan de Desarrollo y Estado del Proyecto
 
 - [x] **Etapa 1 — Comunicación Base**
   - [x] Configuración del Workspace en Rust.
@@ -147,7 +147,7 @@ HOST (PC)                                   CLIENTE (Android)
 
 ---
 
-## 🛠️ Tecnologías
+## Tecnologías
 
 | Ámbito | Tecnologías / Herramientas |
 | :--- | :--- |
@@ -157,7 +157,7 @@ HOST (PC)                                   CLIENTE (Android)
 
 ---
 
-## 🚀 Guía de Inicio Rápido
+## Guía de Inicio Rápido
 
 ### Prerrequisitos
 - [Rust](https://www.rust-lang.org/) (edición 2024 / última versión estable).
