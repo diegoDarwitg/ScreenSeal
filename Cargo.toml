@@ -1,0 +1,7 @@
+[workspace]
+resolver = "3"
+
+members = [
+    "crates/screenseal-core",
+    "crates/screenseal-host",
+]
