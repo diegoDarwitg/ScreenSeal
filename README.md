@@ -121,7 +121,32 @@ HOST (PC)                                   CLIENTE (Android)
 
 ---
 
-## Plan de Desarrollo y Estado del Proyecto
+## Trabajo Actual y Enfoque Inmediato
+
+> [!IMPORTANT]
+> **No saltarse etapas:** La prioridad inmediata es completar el cliente Android y validar la comunicación básica antes de pasar a la transmisión de video o a los drivers de monitor virtual.
+
+Actualmente, el proyecto se encuentra en la transición del cliente de pruebas en Rust hacia la **aplicación cliente real en Android (Kotlin)**:
+
+1. **Situación de Android:** La estructura base de Android está inicializada (`android/`), y el trabajo en curso se centra en implementar la aplicación en Kotlin desde terminal.
+2. **Meta inmediata (Handshake Android ↔ Rust Host):**
+   ```text
+   PC Rust Host (127.0.0.1:7878)
+          │
+          │ TCP sobre túnel 'adb reverse'
+          ▼
+   Android Kotlin (Cliente)
+          │
+          ├─► Recibe 'Message::Hello { version: 1 }'
+          └─► Responde 'Message::HelloAck { version: 1 }'
+   ```
+3. **Validación:** Confirmar que la serialización/deserialización bincode y el framing de 4 bytes funcionan correctamente entre el runtime de Kotlin en el dispositivo físico y el Host en Rust.
+
+Una vez consolidado y verificado este flujo, se iniciará el desarrollo de la **Etapa 2 (Transmisión de video)**.
+
+---
+
+## Plan de Desarrollo
 
 - [x] **Etapa 1 — Comunicación Base**
   - [x] Configuración del Workspace en Rust.
@@ -131,7 +156,7 @@ HOST (PC)                                   CLIENTE (Android)
   - [x] Servidor TCP en `screenseal-host`.
   - [x] Cliente de pruebas en Rust y verificación de Handshake.
   - [x] Verificación de túnel con `adb reverse`.
-  - [ ] Implementación del cliente Android en Kotlin y Handshake Android ↔ Host Rust. *(En curso)*
+  - [ ] **[EN DESARROLLO]** Creación del cliente Android en Kotlin y Handshake Android ↔ Host Rust.
 
 - [ ] **Etapa 2 — Transmisión de Video**
   - [ ] Definición de mensajes de streaming de video en el protocolo.
